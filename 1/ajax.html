@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="testAjax">拿到ID</button>
+        <p> {{ orderID }} </p>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data:{
+                orderID: 0
+            },
+            methods: {
+                testAjax: function(){
+                    fetch('http://localhost:7777/ORDERID')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson[0].orderID);
+                        this.orderID = myJson[0].orderID;
+                    });
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

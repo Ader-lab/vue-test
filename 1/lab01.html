@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" @keyup.13="addItem">
+        <button @click="addItem">送出</button>
+        <ul>
+            <li v-for="item in dataArr" :style="{ color: item.color }">
+                {{ item.name }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "hi",
+                activeColor: '#fa0',
+                dataArr: [
+                    {
+                        name: "漢堡",
+                        color: "red"
+                    }
+                ]
+            },
+            methods: {
+                addItem: function () {
+                    let r = function () { return Math.floor(Math.random() * 256) };
+                    this.dataArr.color = `rgb(${r()},${r()},${r()})`
+                    this.dataArr.push({
+                        name: this.msg,
+                        color: this.dataArr.color
+                    });
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

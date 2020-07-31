@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #fa0;
+            margin: 3px;
+            position:relative;
+            font-size: 24px;
+        }
+
+        #app {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #arrowR {
+            position: absolute;
+            top: 300px;
+            right: 0;
+        }
+        #arrowL {
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ month }}月</h1>
+        <div v-for="item in dayArr" class="box">{{ item }}</div>
+        <button id="arrowR" @click="add">往右往右往右</button>
+        <button id="arrowL" @click="sub">往左往左往左</button>
+    </div>
+    <script>
+        // var curMonthDays = new Date(2020,2,0).getDate();
+        let month = []
+        // for(let i = 0; i < 12; i++) {
+        //     month[i] = i+1;
+        // }
+
+        // let calendar = month.map((month ,idx) => {
+        //     let date =  new Date(2020,month,0).getDate();
+        //     return {
+        //         month,
+        //         date,
+        //     }
+        // })
+
+
+        // let ddd = month.map((month ,idx) => {
+        //     return new Date(2020,month,0).getDate()
+        // })
+        // let aaa = []
+        // ddd.map((item, idx) => {
+        //     for(let i = 0; i < item; i++) {
+        //         aaa[idx][i] = i+1;
+        //     }
+        // })
+        // console.log(aaa);
+
+
+        // let date =  new Date()
+        //     console.log(date);
+
+        let app = new Vue({
+            el:"#app",
+            data:{
+                month: 7,
+                dayArr: [],
+            },
+            methods:{
+                add:function() {
+                    this.dayArr = [];
+                    if(this.month < 12) this.month += 1;
+                    if(this.month === 2) this.day(29);
+                    else if(this.month === 4 || this.month === 6 || this.month === 9 || this.month === 11) this.day(30);
+                    else this.day(31);
+                },
+                sub:function() {
+                    this.dayArr = [];
+                    if(this.month > 1) this.month -= 1;
+                    if(this.month === 2) this.day(29);
+                    else if(this.month === 4 || this.month === 6 || this.month === 9 || this.month === 11) this.day(30);
+                    else this.day(31);
+                },
+                day: function(idx) {
+                    for(let i = 1; i <= idx; i++) {
+                        this.dayArr.push(i);
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

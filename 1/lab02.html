@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    .bg {
+        width: 50%;
+        height: 300px;
+        border: 1px #fa0 solid;
+        margin: 0 auto;
+        position: relative;
+    }
+    ul {
+        list-style-type:none;
+    }
+    li {
+        position: absolute;
+        animation: move 2s linear forwards;
+    }
+
+    @keyframes move{
+        0%{
+            right:0;
+        }
+        100%{
+            right:800px;
+        }
+    }
+
+
+</style>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" @keyup.13="addItem">
+        <button @click="addItem">送出</button>
+        <ul>
+            <div class="bg">
+                <li v-for="(item, idx) in dataArr" class="msg" 
+                    :style="{ color: item.color, top: item.top + 'px' }"
+                    @animationend="disappearItem(idx, $event)"
+                >
+                    {{ item.name }}
+                </li>
+            </div>
+        </ul>
+    </div>
+    
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "hi",
+                activeColor: '#fa0',
+                dataArr: [],
+            },
+            methods: {
+                addItem: function () {
+                    let top = Math.floor(Math.random()*200);
+                    let r = function () { return Math.floor(Math.random() * 256) };
+                    let color = `rgb(${r()},${r()},${r()})`;
+
+                    this.dataArr.push({
+                        name: this.msg,
+                        color,
+                        top,
+                    });
+                },
+                disappearItem(idx, event) {
+                    
+                    // if(event.target) this.dataArr.splice(0,1)
+
+                    if (event.target.parentNode) {
+                        event.target.parentNode.removeChild(event.target);
+                    }
+                    // Vue.set(this.dataArr,idx,"")
+                    // setTimeout(() => {
+                    //     this.dataArr.splice(0,1)
+                    // },3000)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

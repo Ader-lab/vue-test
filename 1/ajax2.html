@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keyup="searchProduct" v-model="productName">
+        <ul>
+            <li v-for="item in productArr">{{ item.productName }}</li>
+        </ul>
+        <div>
+            <a @click="changeProduct('竹筷')">竹筷</a>
+            <a @click="changeProduct('筆')">筆</a>
+        </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data:{
+                productName: "",
+                productArr: [],
+            },
+            methods: {
+                searchProduct: function(){
+                    fetch('http://localhost:7777/testProduct/all/1')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        this.productArr = myJson.filter((val) => {
+                            return val.productName.indexOf(this.productName) !== -1
+                        })
+                    });
+                },
+                changeProduct:function(productName){
+                    this.productName = productName;
+                    this.searchProduct();
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

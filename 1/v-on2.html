@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 @click="doIt('HI','老鐵')">打招呼</h1>
+        <input type="text" @keyup.13="doKeyup">
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                food: "漢堡",
+            },
+            methods:{
+                doIt:function(p1,p2) {
+                    alert(p1,p2);
+                },
+                doKeyup:function() {
+                    alert("HI");
+                }
+            }
+        })
+        
+    </script>
+
+</body>
+</html>

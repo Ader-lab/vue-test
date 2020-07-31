@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- .stop：等同於event.stopPropagation()，防止事件冒泡。 -->
+    <!-- .once：只會觸發一次 -->
+    <!-- .self：只會觸發自己範圍內的事件，不包含子元素。 -->
+    <!-- .prevent：等同於event.preventDefault()，防止執行預設的行為。 -->
+    <div id="app">
+        <div @click="divClick">zzzzz
+            <button @click.stop="buttonClick">按鈕</button>
+            <a href="" @click.prevent.stop="aClick">我是aaaaa</a>
+        </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+            },
+            methods:{
+                divClick() {
+                    console.log("divClick");
+                },
+                buttonClick() {
+                    console.log("buttonClick");
+                },
+                aClick() {
+                    console.log("aClick");
+                }
+            }
+        })
+        
+    </script>
+
+</body>
+</html>

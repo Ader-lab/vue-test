@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .item {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- v-bind:可以簡寫成:就好 -->
+    <div id="app" @click='changeBool'>
+        <button>toggle</button>
+        <input :placeholder="inputVal">
+        <!-- <div :class={item:classBool}>我是item區塊</div> -->
+        <div :class="classBool ? 'item':''">我是item區塊</div>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                inputVal: "請輸入密碼",
+                classBool: false,
+            },
+            methods:{
+                changeBool:function(e) {
+                    this.classBool = !this.classBool;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

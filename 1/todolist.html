@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="inputVal" placeholder="請輸入內容" @keyup.13="addLI">
+        <ul>
+            <li v-for="(item, idx) in list">
+                <span>{{ idx+1 }}.</span>
+                <span>{{ item }}</span>
+                <button class="deleteBtn" @click="deleteLI(idx)">刪除</button>
+            </li>
+        </ul>
+        <footer>
+            <div v-show="list.length != 0">總共:{{ list.length }}項</div>
+            <div v-show="list.length != 0" @click="clearList">clear</div>
+        </footer>
+    </div>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data:{
+                list:[
+                    "吃飯",
+                    "睡覺",
+                    "讀書",
+                ],
+                inputVal:'',
+            },
+            methods: {
+                addLI: function(){
+                    this.list.push(this.inputVal);
+                },
+                deleteLI:function(idx){
+                    this.list.splice(idx,1);
+                },
+                clearList: function(){
+                    this.list = [];
+                },
+            }
+        })
+        
+    </script>
+
+</body>
+</html>

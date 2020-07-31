@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .item {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="( it, idx ) in arr">
+                {{ idx+1 }}. 學生姓名: {{ it }}
+            </li>
+        </ul>
+        <h2 v-for="item in food" :title="item.name">{{ item.name }}</h2>
+        <button @click="addFood">按我增加</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                arr:['小明','小王','阿珠','阿賢','阿德'],
+                food:[
+                    { name: "漢堡" },
+                    { name: "薯條" },
+                    { name: "可樂" },
+                ]
+            },
+            methods:{
+                addFood:function() {
+                    this.food.push({
+                        name:"雞塊"
+                    });
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

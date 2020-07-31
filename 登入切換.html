@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        因為Vue在渲染前會先把即將顯示的東西放在虛擬DOM，出於性能考慮，
+        會盡可能的複用已經存在的元素，而不是重新創造新的元素，
+        ，就像人穿衣服，Vue幫你換了衣服但是穿的人不變。
+        所以要加上key跟他說不能重複使用，key要不同。
+    -->
+    <div id="app">
+        <input v-if="isBool" type="text" placeholder="第一個" key="one">
+        <input v-else type="text" placeholder="第二個" key="two">
+        <button @click="isBool = !isBool">按鈕切換input</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                isBool: true
+            },
+        })
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .changeColor{
+            color: chocolate;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, idx) in movies"
+                :class="{changeColor: idx === currentIdx}"
+                @click="liClick(idx)"
+                >{{ item }}
+            </li>
+        </ul>
+        {{carousel}}
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                movies:["海賊王","火影","死神","玩命關頭","蠟筆小新"],
+                currentIdx: 0,
+            },
+            methods: {
+                liClick(idx) {
+                    this.currentIdx = idx;
+                }
+            },
+            computed: {
+                carousel() {
+                    console.log(123);
+                    setInterval(() => {
+                        this.currentIdx++
+                        if(this.currentIdx === this.movies.length) this.currentIdx = 0
+                    }, 1000);
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

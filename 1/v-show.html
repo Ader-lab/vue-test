@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="changeBool">圖片顯示</button>
+        <button @click="addAge">目前Age: {{ age }}</button>
+        <img v-show="bool" src="https://2.bp.blogspot.com/-7TdBxJhuPFM/V_sZCBPcGNI/AAAAAAAApO0/tK3J4YTc3mIkAHrIhm8zpgwA9NT9orIFwCLcB/s1600/2.png" alt="">
+        <img v-show="age>=18" src="https://2.bp.blogspot.com/-7TdBxJhuPFM/V_sZCBPcGNI/AAAAAAAApO0/tK3J4YTc3mIkAHrIhm8zpgwA9NT9orIFwCLcB/s1600/2.png" alt="">
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                bool: true,
+                age: 10,
+            },
+            methods:{
+                changeBool:function(e) {
+                    this.bool = !this.bool;
+                },
+                addAge:function(e) {
+                    this.age++;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

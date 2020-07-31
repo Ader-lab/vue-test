@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" @click="changeFood(123, $event)">
+        {{ food }}
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                food: "漢堡",
+            },
+            methods:{
+                changeFood(num,event) {
+                    console.log(num,event);
+                    this.food = "薯條"
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

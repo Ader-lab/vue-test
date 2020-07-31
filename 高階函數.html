@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <script>
+        let num = [10,20,30,40,50];
+
+
+        let newNum = num.filter((val) => val > 25 )
+            .map((val) => val*2 )
+            .reduce((preVal, val) => {
+                return preVal + val
+            },0)
+        
+        console.log(newNum);
+
+    // ----------------------------------------------
+
+        let product = [
+            {
+                id: 1,
+                name: 'book',
+                price: 100,
+                amount: 1
+            },
+            {
+                id: 2,
+                name: 'apple',
+                price: 50,
+                amount: 2
+            },
+            {
+                id: 3,
+                name: 'pen',
+                price: 30,
+                amount: 3
+            },
+        ];
+
+        let totalPrice = product.reduce((preVal, val) => {
+            return preVal + val.price * val.amount
+        },0)
+        console.log(totalPrice);
+       
+    </script>
+
+</body>
+</html>

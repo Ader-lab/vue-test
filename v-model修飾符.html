@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .changeColor{
+            color: chocolate;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model.lazy 按下enter或是失去焦點才會有效果 -->
+            <input type="text" v-model.lazy="msg">
+        <!-- v-model.number 讓input能輸出number類型 -->
+            <input type="number" v-model.number="age">
+        <!-- v-model.trim 消除頭尾的空格 -->
+            <input type="text" v-model.trim="name">
+        
+        <h1>{{ msg }}</h1>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg: "HI",
+                age: 0,
+                name: ''
+            },
+
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .changeColor{
+            color: chocolate;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+            <!-- <input type="checkbox" v-model="hobbies" value="籃球">籃球
+            <input type="checkbox" v-model="hobbies" value="桌球">桌球
+            <input type="checkbox" v-model="hobbies" value="羽球">羽球
+            <input type="checkbox" v-model="hobbies" value="排球">排球 -->
+            <hr>
+            <label v-for="item in originHobbies" :for="item" >
+                <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{ item }}
+            </label>
+        
+        <h1>{{ hobbies }}</h1>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                originHobbies: ["籃球", '桌球', "羽球", "排球"],
+                hobbies: [],
+            },
+
+        })
+        
+    </script>
+</body>
+</html>

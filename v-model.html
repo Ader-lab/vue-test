@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .changeColor{
+            color: chocolate;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- value不會顯示文字，之後用於我獲取文字 -->
+        <label>
+            <input type="radio" value="男" v-model="sex">男
+        </label>
+        <label>
+            <input type="radio" value="女" v-model="sex">女
+        </label>
+        <h1>{{ sex }}</h1>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                sex: '男'
+            },
+
+        })
+        
+    </script>
+</body>
+</html>
