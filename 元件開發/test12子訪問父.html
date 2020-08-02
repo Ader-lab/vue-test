@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <ccpn></ccpn>
+        </div>
+    </template>
+
+    <template id="ccpn">
+        <div>
+            <div>子子元件</div>
+            <button @click='btnClick'>按鈕</button>
+        </div>
+    </template>
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "最上層",
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data() {
+                        return {
+                            msg: "第2層"
+                        }
+                    },
+                    components: {
+                        ccpn: {
+                            template: '#ccpn',
+                            methods: {
+                                btnClick() {
+                                    console.log(this.$parent.msg);
+                                    console.log(this.$root.msg);
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

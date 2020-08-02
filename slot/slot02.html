@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 抽取共同性，保留不同 -->
+
+<body>
+    <div id="app">
+        <cpn>
+            <span slot="center">標題</span>
+            <!-- <button slot="left">按鈕</button> -->
+        </cpn>
+        <!-- <cpn></cpn> -->
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot name="left">
+                <p>左邊</p>
+            </slot>
+            <!-- 有name的會對應替換 -->
+            <slot name="center">
+                <p>中間</p>
+            </slot>
+            <slot>
+                <p>右邊</p>
+            </slot>
+        </div>
+    </template>
+
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

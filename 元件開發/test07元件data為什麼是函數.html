@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <!-- https://www.bilibili.com/video/BV15741177Eh?p=57 -->
+        <script>
+
+            // obj1 和 obj2 互不影響 return出來的不是同一個對象(物件)
+            // 函數會每次傳出一個新的對象(物件)，所以Vue元件裡使用多次元件，data值戶不干涉
+            // function a() {
+            //     return {
+            //         name: 'aaa'
+            //     }
+            // }
+            // let obj1 = a();
+            // let obj2 = a();
+            // obj1.name = "bbb"
+            // console.log(obj1);
+            // console.log(obj2);
+
+            // ------------------------------------------------
+            // 是同一個對象，都是同一個內存地址，
+            // 所以Vue元件內的data不能使用物件
+            const obj = {
+                name: 'aaa'
+            }
+            function b() {
+                return obj
+            }
+
+            let obj3 = b();
+            let obj4 = b();
+            obj3.name = "bbb"
+            console.log(obj3);
+            console.log(obj4);
+        </script>
+    </body>
+
+    </html>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+    <script>
+
+        // 1. 創建元件
+        const cpnC = Vue.extend({
+            template: `
+                <div>
+                    <h1>我是標題</h1>
+                    <p>哈哈哈哈哈</p>
+                </div>
+            `
+        })
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "HI",
+            },
+            // 2. 註冊元件  第一個參數 元件標籤名，不能大寫， 第一個參數 把要傳的元件放進去
+            // 局部元件
+            components: {
+                cpn: cpnC
+            }
+        })
+
+    </script>
+</body>
+
+</html>

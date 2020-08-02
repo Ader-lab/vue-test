@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+
+    <!-- 第一種 -->
+    <!-- <script type="text/x-template" id="cpn">
+        <div>
+            <h1>我是標題</h1>
+            <p>QQQQQ</p>
+        </div> 
+    </script> -->
+
+    <!-- 第二種 -->
+    <template id="cpn">
+        <div>
+            <h1>我是標題</h1>
+            <p>QQQQQ</p>
+        </div>
+    </template>
+
+    <script>
+
+
+        // root 元件 
+        // 註冊局部元件語法糖
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "HI",
+            },
+            components: {
+                cpn: {
+                    template: '#cpn'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

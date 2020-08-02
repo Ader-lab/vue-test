@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 抽取共同性，保留不同 -->
+
+<body>
+    <div id="app">
+        <product>
+            <template v-slot:name>
+                毛衣
+            </template>
+            <template v-slot:price>
+                $400
+            </template>
+            <template v-slot:price="{ discount }">
+                特價: {{ 400 * discount }} 原價: $400
+            </template>
+            <template>
+                測試沒有定義 v-slot:price 的情況
+                <hr>
+            </template>
+        </product>
+
+        <product>
+            <template>
+                <p>呵呵呵</p>
+            </template>
+        </product>
+        <product>
+            <template>
+                哈哈哈
+            </template>
+        </product>
+    </div>
+
+    <template id="product">
+        <div>
+            <h1>商品總覽:</h1>
+            <h2>
+                <slot name="name">
+            </h2>
+            <span>
+                <slot name="price" :discount="discount">
+            </span>
+
+            <h2>
+                <slot>
+            </h2>
+            <div>
+                <slot>
+            </div>
+        </div>
+    </template>
+
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                product: {
+                    template: '#product',
+                    data() {
+                        return {
+                            discount: 0.5,
+                        }
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

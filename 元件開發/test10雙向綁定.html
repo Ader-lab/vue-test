@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父定義一個function丟到子 -->
+        <cpn :p_num="num" @num_change='num_change'></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <!-- <input type="text" v-model="dnew_num"> -->
+            <input type="text" :value="d_num" @input="inputValue">
+            <h1>data:{{ d_num }}</h1>
+            <h1>props:{{ p_num }}</h1>
+        </div>
+    </template>
+
+    <script>
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                num: 1,
+            },
+            methods: {
+                // 父定義一個function丟到子
+                num_change(val) {
+                    this.num = val;
+                    console.log(val);
+                }
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    props: ['p_num'],
+                    data() {
+                        return {
+                            // props不能被更改，所以要先把值存到data
+                            d_num: this.p_num
+                        }
+                    },
+                    methods: {
+                        inputValue(event) {
+                            this.d_num = event.target.value;
+                            // 子定義一個num_change函數，接父丟過來的num_change函數，並把要傳的值emit給他
+                            this.$emit('num_change', this.d_num)
+                        }
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

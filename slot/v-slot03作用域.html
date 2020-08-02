@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <product>
+            <template v-slot:product='{ products }'>
+                {{ products }}++
+            </template>
+        </product>
+    </div>
+
+    <template id="product">
+        <div>
+            <ul>
+                <li v-for="item in products">
+                    <slot name="product" :products="item">
+                </li>
+                <!-- <li v-for="item in products">
+                    {{item}}
+                </li> -->
+            </ul>
+        </div>
+    </template>
+
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                product: {
+                    template: '#product',
+                    data() {
+                        return {
+                            products: ["筷子", "盤子", "湯匙"]
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+</body>
+
+</html>

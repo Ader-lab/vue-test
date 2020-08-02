@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <template slot-scope="slot">
+                {{ slot.new_products.join("*") }}
+            </template>
+        </cpn>
+        <cpn>
+            <template slot-scope="slot">
+                <span v-for="item in slot.new_products">
+                    {{ item }}--
+                </span>
+            </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot :new_products="products">
+                <ul>
+                    <li v-for="item in products">
+                        {{ item }}
+                    </li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            products: ["筷子", "盤子", "湯匙"]
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn :c_movies="movies" :c_msg="msg"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h1>{{ c_msg }}</h1>
+            <div>
+                <p v-for="item in c_movies">{{ item }}</p>
+            </div>
+        </div>
+    </template>
+
+    <script>
+
+        // 父傳子: props
+        const cpn = {
+            template: "#cpn",
+            //第1種
+            // props: [
+            //     'c_movies',
+            //     'c_msg'
+            // ],
+
+            //第2種 類型限制
+            // props: {
+            //     c_movies: Array,
+            //     c_msg: String,
+            // },
+
+            //第3種 類型限制和預設值以及必傳值
+            props: {
+                'c_movies': {
+                    type: Array,
+                    default() {
+                        return []   // 必須是函數
+                    }
+                },
+                'c_msg': {
+                    type: String,
+                    default: "aaa",  // 可有有預設值
+                    required: true   // 必須傳這個變數，不然會報錯
+                }
+            }
+        }
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "HI",
+                movies: [
+                    '海賊王',
+                    '火影',
+                    '死神'
+                ]
+            },
+            components: {
+                cpn
+            }
+        })
+
+    </script>
+</body>
+
+</html>

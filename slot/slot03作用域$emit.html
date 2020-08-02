@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn @get_products='get_products'>
+            <span v-for="item in newProducts" slot="aaa">
+                {{ item }}--
+            </span>
+        </cpn>
+
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot>
+                <ul>
+                    <li v-for="item in products">
+                        {{ item }}
+                    </li>
+                </ul>
+            </slot>
+            <slot name="aaa"></slot>
+            {{ newProducts() }}
+        </div>
+    </template>
+
+
+    <script>
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                newProducts: []
+            },
+            methods: {
+                get_products(item) {
+                    console.log(item);
+                    this.newProducts = item;
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            products: ["筷子", "盤子", "湯匙"]
+                        }
+                    },
+                    methods: {
+                        newProducts() {
+                            this.$emit('get_products', this.products)
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+</body>
+
+</html>

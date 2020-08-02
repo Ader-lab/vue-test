@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h1>{{ title }}</h1>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('cpn', {
+            template: "#cpn",
+            // data 必須是函數，而且必須return一個對象，對像內保存數據
+            data() {
+                return {
+                    title: '我是ABC'
+                }
+            }
+        })
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "HI",
+            },
+            // components: {
+            //     cpn: {
+            //         template: '#cpn'
+            //     }
+            // }
+        })
+
+    </script>
+</body>
+
+</html>

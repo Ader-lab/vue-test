@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 監聽自定義事件itemClick -->
+        <!-- 不能大寫 -->
+        <cpn @item_click="cpnClick"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <button v-for="item in products" @click="btnClick(item)">
+                {{ item.name }}
+            </button>
+        </div>
+    </template>
+
+    <script>
+
+        const cpn = {
+            template: "#cpn",
+            data() {
+                return {
+                    msg: 'hi',
+                    products: [
+                        { id: 1, name: "筷子" },
+                        { id: 2, name: "碗盤" },
+                        { id: 3, name: "湯匙" },
+                    ]
+                }
+            },
+            methods: {
+                btnClick(item) {
+                    // 子傳父 emit發射的意思
+                    this.$emit('item_click', item)
+                },
+            }
+
+        }
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                msg: "HI",
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                cpnClick(item) {
+                    console.log(item);
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
